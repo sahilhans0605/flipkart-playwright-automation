@@ -1,2 +1,115 @@
 # flipkart-playwright-automation
 End-to-end Playwright automation script for Flipkart that searches for "iPhone 15", handles login popups, applies filters, validates price sorting. Includes dynamic locators, error handling, and screenshot capturing for failures.
+
+
+
+## 🧪 Playwright Automation Project: Flipkart iPhone 15 Search
+
+### 🎯 Project Goal
+
+Automate the process of:
+
+* Navigating to [Flipkart](https://www.flipkart.com)
+* Closing the login popup if present
+* Searching for “iPhone 15”
+* Applying relevant filters (brand, price: low to high)
+* Validating if the price sorting is working correctly
+* Preparing for integration with Excel/PDF reporting
+
+---
+
+### 🛠️ Tech Stack & Tools
+
+* **Language**: JavaScript (ES6+)
+* **Framework**: [Playwright](https://playwright.dev/)
+* **Browser**: Chromium
+* **Testing**: Playwright Test Runner
+* **Debugger**: Playwright Inspector
+* **Reporting**: HTML Reporter (optional)
+* **Data Export (Planned)**: ExcelJS / pdfkit
+
+---
+
+### 📚 Key Concepts Covered
+
+* ✅ **Popup Handling** – Detect and close login modals
+* 🔄 **Retry Logic** – Reload until login popup appears
+* 🎯 **Dynamic Locators** – Handle changing DOM elements
+* ⌨️ **Typing with Delay** – Simulate realistic user input
+* 🔍 **Auto-Suggestion Matching** – Select from dropdown suggestions
+* 🧪 **Assertions** – Ensure the result page matches the search
+* 📉 **Filter Validation** – Verify price sorting (Low to High)
+* 🐞 **Debugging** – Use `page.pause()` and `Playwright Inspector`
+
+---
+
+### 🧩 Script Flow Overview
+
+1. **Setup**
+
+   * Launch browser and context
+   * Close popup if it appears
+2. **Search Logic**
+
+   * Type `iPhone` and pick `iPhone 15` from suggestions
+   * Wait for results and validate presence
+3. **Filtering**
+
+   * Select Apple brand
+   * Sort by “Price — Low to High”
+4. **Validation**
+
+   * Extract all displayed prices
+   * Clean and convert to integer
+   * Verify ascending order
+5. **Post-Validation**
+
+   * If any price mismatch is found, throw an error and (optionally) take a screenshot
+
+---
+
+### 🔮 Planned Features
+
+* 📄 **Excel Export** of iPhone data using `exceljs`
+* 📑 **PDF Summary** generation using `pdfkit`
+* 📷 **Screenshot Capture on Failures**
+* 📊 **Test Report Generation** using Playwright’s HTML reporter
+* 🧾 **Test Logs & Retry Logic** improvements
+
+---
+
+### 📂 Project Structure
+
+```
+flipkart/
+│
+├── testFiles/
+│   └── addToCart.spec.js        # Main automation script
+│
+├── playwright.config.js         # Test settings, reporter, screenshots
+├── README.md                    # Documentation
+└── node_modules/
+```
+
+---
+
+### 🚀 How to Run
+
+```bash
+# Install dependencies
+npm install
+
+# Run the test
+npx playwright test testFiles/addToCart.spec.js
+
+# To view report
+npx playwright show-report
+```
+
+---
+
+### 📌 Requirements
+
+* Node.js ≥ v16
+* Flipkart accessible in your region
+* Stable internet connection
