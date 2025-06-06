@@ -1,0 +1,121 @@
+### 🧱 Sample DOM (from Flipkart Filters)
+
+```html
+<label class="tJjCVx _3DvUAf">
+  <input type="checkbox" class="vn9L2C" readonly="">
+  <div class="XqNaEv"></div>
+  <div class="_6i1qKy">Apple</div>
+</label>
+```
+
+This DOM represents a single brand filter ("Apple") on Flipkart. We'll now use this to understand different XPath axes ⬇️
+
+---
+
+### 🧭 XPath Axes Explained with Real DOM
+
+---
+
+#### 👶 **Child Axis**
+
+> Selects the **direct child** of a parent node.
+
+📌 **XPath:**
+
+```xpath
+//label[@class="tJjCVx _3DvUAf"]/div[@class="_6i1qKy"]
+```
+
+✅ *Selects the `<div>` with brand name "Apple", which is a direct child of `<label>`.*
+
+---
+
+#### 🌱 **Descendant Axis**
+
+> Selects **any nested** element inside a parent node, no matter how deep.
+
+📌 **XPath:**
+
+```xpath
+//label[@class="tJjCVx _3DvUAf"]//div
+```
+
+✅ *Fetches all `<div>`s inside `<label>` — even if they are deeply nested.*
+
+---
+
+#### 🧍 **Parent Axis**
+
+> Moves one level **up** in the DOM tree.
+
+📌 **XPath:**
+
+```xpath
+//div[text()="Apple"]/..
+```
+
+✅ *From the `<div>` containing text "Apple", go up to its parent `<label>`.*
+
+---
+
+#### 🧓 **Ancestor Axis**
+
+> Moves **any number of levels up** in the DOM to find a matching ancestor.
+
+📌 **XPath:**
+
+```xpath
+//div[text()="Apple"]/ancestor::label
+```
+
+✅ *Gets the closest `<label>` that wraps around the "Apple" text — even if nested inside other elements.*
+
+---
+
+#### 👫 **Sibling Axes**
+
+> Used to target **elements on the same level** in the DOM.
+
+🔸 **Following-Sibling:** Selects all siblings **after** the current element.
+
+📌 **XPath:**
+
+```xpath
+//div[text()="Apple"]/following-sibling::div
+```
+
+✅ *Grabs the `<div>`s placed after the "Apple" text div.*
+
+🔸 **Preceding-Sibling:** Selects all siblings **before** the current element.
+
+📌 **XPath:**
+
+```xpath
+//div[text()="Apple"]/preceding-sibling::div
+```
+
+✅ *Useful to get icons or other data that comes before the name.*
+
+---
+
+### 💡 Combo Example: Select Checkbox for "Apple"
+
+📌 **XPath:**
+
+```xpath
+//div[text()="Apple"]/ancestor::label//input[@type="checkbox"]
+```
+
+✅ *This goes from the text "Apple" up to the label, then down to its checkbox — perfect for clicking.*
+
+---
+
+### 🏁 Bonus Tip
+
+🔁 If the structure is dynamic, using **text-based XPath** with `contains()` helps:
+
+```xpath
+//div[contains(text(), "Apple")]/ancestor::label
+```
+
+✅ *More robust if classes or positions change.*
